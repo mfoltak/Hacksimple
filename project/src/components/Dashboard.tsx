@@ -29,7 +29,7 @@ const Dashboard = () => {
                 ${mockTrustFund.totalValue.toLocaleString()}
               </p>
             </div>
-            <DollarSign className="h-8 w-8 text-blue-600" />
+            <DollarSign className="h-8 w-8 text-gray-900" />
           </div>
         </div>
         
@@ -51,7 +51,7 @@ const Dashboard = () => {
                 {mockTrustFund.beneficiaries.length}
               </p>
             </div>
-            <Users className="h-8 w-8 text-blue-600" />
+            <Users className="h-8 w-8 text-gray-900" />
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@ const Dashboard = () => {
                   Allocation: {beneficiary.allocation}%
                 </p>
               </div>
-              <button className="text-blue-600 hover:text-blue-700 flex items-center gap-1">
+              <button className="text-gray-900 hover:text-gray-700 flex items-center gap-1">
                 Manage <ArrowRight className="h-4 w-4" />
               </button>
             </div>
