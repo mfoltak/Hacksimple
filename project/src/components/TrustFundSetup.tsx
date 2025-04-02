@@ -237,7 +237,7 @@ const TrustFundSetup = () => {
                         sin: 'DEMO-123-456-789',
                         address: '123 Example Street, Sampletown, XY 12345',
                         phone: '(555) 123-4567',
-                        email: 'johndoe@wealthsimple.com',
+                        email: 'mark.smith@wealthsimple.com',
                       }
                     });
                   }}
