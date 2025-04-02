@@ -1,3 +1,3 @@
 # Hacksimple
 authors: 
-Sahil Handa, Darsh Shah
+Sahil Handa, Darsh Shah, Melanie Foltak
