@@ -224,7 +224,33 @@ const TrustFundSetup = () => {
         {currentStep === 1 && (
           <div className="space-y-8">
             <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">1. Settlor Information</h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold text-gray-900">1. Settlor Information</h2>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTrustData({
+                      ...trustData,
+                      settlor: {
+                        fullName: 'Mark Smith',
+                        dateOfBirth: '1975-07-02',
+                        sin: 'DEMO-123-456-789',
+                        address: '123 Example Street, Sampletown, XY 12345',
+                        phone: '(555) 123-4567',
+                        email: 'johndoe@wealthsimple.com',
+                      }
+                    });
+                  }}
+                  className="flex items-center gap-2 text-sm bg-green-50 text-green-700 px-3 py-1.5 rounded-md hover:bg-green-100 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Import from Wealthsimple
+                </button>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Full Legal Name</label>
