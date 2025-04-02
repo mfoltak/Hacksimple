@@ -55,4 +55,8 @@ export interface TrustFundData {
     targetDate: string;
     financialGoal: string;
   };
+  trustAssets: {
+    name: string;
+    value: string;
+  }[];
 }
