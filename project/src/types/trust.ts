@@ -49,4 +49,10 @@ export interface TrustFundData {
       contact: string;
     };
   };
+  financialPlanning: {
+    currentIncome: string;
+    goalAmount: string;
+    targetDate: string;
+    financialGoal: string;
+  };
 }
