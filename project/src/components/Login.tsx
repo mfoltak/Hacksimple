@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Wallet, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
+import wealthsimpleLogo from '../assets/Wealthsimple_Logo.png';
 
 interface LoginProps {
   onLogin: () => void;
@@ -20,9 +21,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <Wallet className="h-12 w-12 text-blue-600" />
+            <img src={wealthsimpleLogo} alt="Wealthsimple" className="h-12" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">TrustGuard</h2>
           <p className="text-gray-600 mt-2">Secure Trust Fund Management</p>
         </div>
         
@@ -35,7 +35,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
               placeholder="you@example.com"
             />
           </div>
@@ -48,14 +48,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
               placeholder="••••••••"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full flex justify-center items-center gap-2 bg-blue-600 py-2 px-4 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full flex justify-center items-center gap-2 bg-gray-100 py-2 px-4 text-gray-900 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             <Lock className="h-4 w-4" />
             Sign In

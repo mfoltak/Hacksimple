@@ -199,23 +199,29 @@ const TrustFundSetup = () => {
         </button>
       </div>
       
-      <div className="mb-8">
-        <div className="flex justify-between">
-          <div className={`text-center ${currentStep >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-100' : 'bg-gray-100'}`}>1</div>
-            <div className="mt-1 text-sm">Basic Info</div>
-          </div>
-          <div className={`text-center ${currentStep >= 2 ? 'text-blue-600' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center ${currentStep >= 2 ? 'bg-blue-100' : 'bg-gray-100'}`}>2</div>
-            <div className="mt-1 text-sm">Beneficiaries</div>
-          </div>
-          <div className={`text-center ${currentStep >= 3 ? 'text-blue-600' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center ${currentStep >= 3 ? 'bg-blue-100' : 'bg-gray-100'}`}>3</div>
-            <div className="mt-1 text-sm">Financial Goals</div>
-          </div>
-          <div className={`text-center ${currentStep >= 4 ? 'text-blue-600' : 'text-gray-400'}`}>
-            <div className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center ${currentStep >= 4 ? 'bg-blue-100' : 'bg-gray-100'}`}>4</div>
-            <div className="mt-1 text-sm">Review</div>
+      <div className="flex flex-col space-y-4 mb-8">
+        <div className="flex justify-between items-center">
+          <div className="flex space-x-8">
+            <div className={`flex items-center ${currentStep === 1 ? 'text-gray-900' : 'text-gray-500'}`}>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2 
+                ${currentStep === 1 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>1</span>
+              Basic Info
+            </div>
+            <div className={`flex items-center ${currentStep === 2 ? 'text-gray-900' : 'text-gray-500'}`}>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
+                ${currentStep === 2 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>2</span>
+              Beneficiaries
+            </div>
+            <div className={`flex items-center ${currentStep === 3 ? 'text-gray-900' : 'text-gray-500'}`}>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
+                ${currentStep === 3 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>3</span>
+              Financial Goals
+            </div>
+            <div className={`flex items-center ${currentStep === 4 ? 'text-gray-900' : 'text-gray-500'}`}>
+              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
+                ${currentStep === 4 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>4</span>
+              Review
+            </div>
           </div>
         </div>
       </div>
@@ -259,7 +265,7 @@ const TrustFundSetup = () => {
                     name="fullName"
                     value={trustData.settlor.fullName}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -269,7 +275,7 @@ const TrustFundSetup = () => {
                     name="dateOfBirth"
                     value={trustData.settlor.dateOfBirth}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -279,7 +285,7 @@ const TrustFundSetup = () => {
                     name="sin"
                     value={trustData.settlor.sin}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -289,7 +295,7 @@ const TrustFundSetup = () => {
                     name="address"
                     value={trustData.settlor.address}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -299,7 +305,7 @@ const TrustFundSetup = () => {
                     name="phone"
                     value={trustData.settlor.phone}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -309,7 +315,7 @@ const TrustFundSetup = () => {
                     name="email"
                     value={trustData.settlor.email}
                     onChange={handleSettlorChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
               </div>
@@ -325,7 +331,7 @@ const TrustFundSetup = () => {
                     name="fullName"
                     value={trustData.trustee.fullName}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -335,7 +341,7 @@ const TrustFundSetup = () => {
                     name="dateOfBirth"
                     value={trustData.trustee.dateOfBirth}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -345,7 +351,7 @@ const TrustFundSetup = () => {
                     name="sin"
                     value={trustData.trustee.sin}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -355,7 +361,7 @@ const TrustFundSetup = () => {
                     name="address"
                     value={trustData.trustee.address}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -365,7 +371,7 @@ const TrustFundSetup = () => {
                     name="phone"
                     value={trustData.trustee.phone}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
                 <div>
@@ -375,7 +381,7 @@ const TrustFundSetup = () => {
                     name="email"
                     value={trustData.trustee.email}
                     onChange={handleTrusteeChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                   />
                 </div>
               </div>
@@ -385,7 +391,7 @@ const TrustFundSetup = () => {
               <button
                 type="button"
                 onClick={nextStep}
-                className="bg-blue-600 py-2 px-6 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
                 Next: Beneficiaries
               </button>
@@ -401,7 +407,7 @@ const TrustFundSetup = () => {
                 <button
                   type="button"
                   onClick={addBeneficiary}
-                  className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
+                  className="text-gray-900 hover:text-gray-700 flex items-center gap-1"
                 >
                   <PlusCircle className="h-5 w-5" />
                   Add Beneficiary
@@ -434,7 +440,7 @@ const TrustFundSetup = () => {
                         name="fullName"
                         value={beneficiary.fullName}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                       />
                     </div>
                     <div>
@@ -444,7 +450,7 @@ const TrustFundSetup = () => {
                         name="relationship"
                         value={beneficiary.relationship}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                       />
                     </div>
                     <div>
@@ -454,7 +460,7 @@ const TrustFundSetup = () => {
                         name="dateOfBirth"
                         value={beneficiary.dateOfBirth}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                       />
                     </div>
                     <div>
@@ -464,7 +470,7 @@ const TrustFundSetup = () => {
                         name="sin"
                         value={beneficiary.sin}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                       />
                     </div>
                     <div>
@@ -474,7 +480,7 @@ const TrustFundSetup = () => {
                         name="address"
                         value={beneficiary.address}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                       />
                     </div>
                     <div>
@@ -483,7 +489,7 @@ const TrustFundSetup = () => {
                         name="distributionInstructions"
                         value={beneficiary.distributionInstructions}
                         onChange={(e) => handleBeneficiaryChange(index, e)}
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                         rows={3}
                       />
                     </div>
@@ -503,7 +509,7 @@ const TrustFundSetup = () => {
               <button
                 type="button"
                 onClick={nextStep}
-                className="bg-blue-600 py-2 px-6 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
                 Next: Financial Goals
               </button>
@@ -525,7 +531,7 @@ const TrustFundSetup = () => {
                   name="currentIncome"
                   value={trustData.financialPlanning.currentIncome}
                   onChange={handleFinancialPlanningChange}
-                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
@@ -541,7 +547,7 @@ const TrustFundSetup = () => {
                   name="goalAmount"
                   value={trustData.financialPlanning.goalAmount}
                   onChange={handleFinancialPlanningChange}
-                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
@@ -555,7 +561,7 @@ const TrustFundSetup = () => {
                 name="targetDate"
                 value={trustData.financialPlanning.targetDate}
                 onChange={handleFinancialPlanningChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
               />
             </div>
             
@@ -566,7 +572,7 @@ const TrustFundSetup = () => {
                   calculateMonthlyContribution();
                   setShowCalculation(true);
                 }}
-                className="flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-200 transition-colors"
+                className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 <Calculator className="h-4 w-4" />
                 Calculate Monthly Contribution
@@ -607,7 +613,7 @@ const TrustFundSetup = () => {
                 name="financialGoal"
                 value={trustData.financialPlanning.financialGoal}
                 onChange={handleFinancialPlanningChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                 rows={4}
                 placeholder="e.g., I want to create a college fund for my children..."
               />
@@ -623,7 +629,7 @@ const TrustFundSetup = () => {
               <button
                 type="button"
                 onClick={nextStep}
-                className="bg-blue-600 py-2 px-6 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
                 Next: Review
               </button>
@@ -687,7 +693,7 @@ const TrustFundSetup = () => {
               </button>
               <button
                 type="submit"
-                className="bg-blue-600 py-2 px-6 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
                 Create Trust Fund
               </button>

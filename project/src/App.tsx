@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Wallet, Users, LayoutDashboard, LogOut } from 'lucide-react';
+import { Users, LayoutDashboard, LogOut } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 import TrustFundSetup from './components/TrustFundSetup';
 import Login from './components/Login';
+import wealthsimpleLogo from './assets/Wealthsimple_Logo.png';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,10 +17,9 @@ function App() {
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg">
-        <div className="p-4">
-          <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
-            <Wallet className="h-6 w-6" />
-            TrustGuard
+        <div className="h-20 flex items-center justify-center">
+          <h1 className="flex items-center">
+            <img src={wealthsimpleLogo} alt="Wealthsimple" className="h-8" />
           </h1>
         </div>
         <nav className="mt-8">
@@ -27,7 +27,7 @@ function App() {
             onClick={() => setCurrentView('dashboard')}
             className={`w-full flex items-center gap-3 px-4 py-3 text-left ${
               currentView === 'dashboard'
-                ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600'
+                ? 'bg-gray-100 text-gray-900 border-r-4 border-gray-900'
                 : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -38,7 +38,7 @@ function App() {
             onClick={() => setCurrentView('setup')}
             className={`w-full flex items-center gap-3 px-4 py-3 text-left ${
               currentView === 'setup'
-                ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600'
+                ? 'bg-gray-100 text-gray-900 border-r-4 border-gray-900'
                 : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
