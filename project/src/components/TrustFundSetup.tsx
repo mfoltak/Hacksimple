@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { PlusCircle, MinusCircle, Download } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { PlusCircle, MinusCircle, Download, Calculator } from 'lucide-react';
 import { TrustFundData } from '../types/trust';
 import { generateTrustDocument } from '../utils/pdfGenerator';
 
@@ -55,7 +55,6 @@ const initialTrustData: TrustFundData = {
   },
   financialPlanning: {
     currentIncome: '',
-    monthlyContribution: '',
     goalAmount: '',
     targetDate: '',
     financialGoal: '',
@@ -65,6 +64,41 @@ const initialTrustData: TrustFundData = {
 const TrustFundSetup = () => {
   const [trustData, setTrustData] = useState<TrustFundData>(initialTrustData);
   const [currentStep, setCurrentStep] = useState(1);
+  const [showCalculation, setShowCalculation] = useState(false);
+  const [monthlyContribution, setMonthlyContribution] = useState<number | null>(null);
+
+  useEffect(() => {
+    calculateMonthlyContribution();
+  }, [trustData.financialPlanning.goalAmount, trustData.financialPlanning.targetDate]);
+
+  const calculateMonthlyContribution = () => {
+    const { goalAmount, targetDate } = trustData.financialPlanning;
+    
+    if (!goalAmount || !targetDate) {
+      setMonthlyContribution(null);
+      return;
+    }
+    
+    const goalAmountNum = parseFloat(goalAmount);
+    const targetDateObj = new Date(targetDate);
+    const currentDate = new Date();
+    
+    if (isNaN(goalAmountNum) || targetDateObj <= currentDate) {
+      setMonthlyContribution(null);
+      return;
+    }
+    
+    const monthsDiff = (targetDateObj.getFullYear() - currentDate.getFullYear()) * 12 + 
+                       (targetDateObj.getMonth() - currentDate.getMonth());
+    
+    if (monthsDiff <= 0) {
+      setMonthlyContribution(null);
+      return;
+    }
+    
+    const contribution = goalAmountNum / monthsDiff;
+    setMonthlyContribution(contribution);
+  };
 
   const handleSettlorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTrustData({
@@ -472,22 +506,6 @@ const TrustFundSetup = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Monthly Contribution
-              </label>
-              <div className="relative">
-                <span className="absolute left-3 top-2 text-gray-500">$</span>
-                <input
-                  type="number"
-                  name="monthlyContribution"
-                  value={trustData.financialPlanning.monthlyContribution}
-                  onChange={handleFinancialPlanningChange}
-                  className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0.00"
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Target Goal Amount
               </label>
               <div className="relative">
@@ -514,6 +532,43 @@ const TrustFundSetup = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
+            
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  calculateMonthlyContribution();
+                  setShowCalculation(true);
+                }}
+                className="flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-200 transition-colors"
+              >
+                <Calculator className="h-4 w-4" />
+                Calculate Monthly Contribution
+              </button>
+              
+              {showCalculation && monthlyContribution !== null && (
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-medium text-blue-800">Monthly Contribution Needed</h3>
+                    <button 
+                      onClick={() => setShowCalculation(false)}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <p className="text-blue-700">
+                    To reach your goal of <span className="font-bold">${parseFloat(trustData.financialPlanning.goalAmount).toLocaleString()}</span> by{' '}
+                    <span className="font-bold">{new Date(trustData.financialPlanning.targetDate).toLocaleDateString()}</span>,
+                    you need to contribute:
+                  </p>
+                  <p className="text-2xl font-bold text-blue-800 mt-2">
+                    ${monthlyContribution.toFixed(2)} per month
+                  </p>
+                </div>
+              )}
+            </div>
+            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Describe Your Financial Goals
@@ -583,7 +638,7 @@ const TrustFundSetup = () => {
                   <h3 className="font-medium text-gray-900">Financial Goals</h3>
                   <p className="text-gray-600">
                     Target Amount: ${trustData.financialPlanning.goalAmount || "0"} • 
-                    Monthly Contribution: ${trustData.financialPlanning.monthlyContribution || "0"}
+                    {monthlyContribution && `Recommended Monthly Contribution: $${monthlyContribution.toFixed(2)}`}
                   </p>
                   <p className="text-gray-600 mt-2">
                     {trustData.financialPlanning.financialGoal || "No specific goals provided"}
