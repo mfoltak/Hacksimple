@@ -1,2 +1,4 @@
 # Hacksimple
-authors: Sahil Handa
+authors: 
+Sahil Handa
+Darsh Shah
