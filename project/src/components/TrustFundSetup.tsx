@@ -533,7 +533,7 @@ const TrustFundSetup = () => {
               />
             </div>
             
-            <div className="mt-4">
+            <div className="mt-4 flex justify-center">
               <button
                 type="button"
                 onClick={() => {
@@ -545,29 +545,33 @@ const TrustFundSetup = () => {
                 <Calculator className="h-4 w-4" />
                 Calculate Monthly Contribution
               </button>
-              
-              {showCalculation && monthlyContribution !== null && (
-                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="font-medium text-blue-800">Monthly Contribution Needed</h3>
-                    <button 
-                      onClick={() => setShowCalculation(false)}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      ×
-                    </button>
-                  </div>
-                  <p className="text-blue-700">
-                    To reach your goal of <span className="font-bold">${parseFloat(trustData.financialPlanning.goalAmount).toLocaleString()}</span> by{' '}
-                    <span className="font-bold">{new Date(trustData.financialPlanning.targetDate).toLocaleDateString()}</span>,
+            </div>
+            
+            {showCalculation && monthlyContribution !== null && (
+              <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                <div className="text-center mb-2">
+                  <h3 className="font-medium text-gray-900">Monthly Contribution Needed</h3>
+                </div>
+                <div className="flex justify-end">
+                  <button 
+                    onClick={() => setShowCalculation(false)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="text-center">
+                  <p className="text-gray-700">
+                    To reach your goal of <span className="font-semibold">${parseFloat(trustData.financialPlanning.goalAmount).toLocaleString()}</span> by{' '}
+                    <span className="font-semibold">{new Date(trustData.financialPlanning.targetDate).toLocaleDateString()}</span>,
                     you need to contribute:
                   </p>
-                  <p className="text-2xl font-bold text-blue-800 mt-2">
+                  <p className="text-xl font-bold text-gray-900 mt-2">
                     ${monthlyContribution.toFixed(2)} per month
                   </p>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
