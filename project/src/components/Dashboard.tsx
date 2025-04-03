@@ -91,8 +91,8 @@ const AllocationModal: React.FC<AllocationModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-[480px]">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40">
+      <div className="bg-white rounded-lg p-6 w-[480px] relative z-40">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold">Manage Asset Distribution</h3>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -193,8 +193,8 @@ const StockPortfolioModal: React.FC<StockPortfolioModalProps> = ({ isOpen, onClo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-[480px]">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40">
+      <div className="bg-white rounded-lg p-6 w-[480px] relative z-40">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-semibold">Stock Portfolio Breakdown</h3>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">

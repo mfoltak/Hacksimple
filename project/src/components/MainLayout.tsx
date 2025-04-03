@@ -20,7 +20,7 @@ const MainLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Top Navigation Bar */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-200 relative z-50 bg-white">
         <div className="max-w-screen-2xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Left side nav items */}
@@ -65,7 +65,7 @@ const MainLayout: React.FC = () => {
       </div>
 
       {/* Future Page Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-200 relative z-50 bg-white">
         <div className="max-w-screen-2xl mx-auto px-6">
           <div className="flex">
             {tabs.map((tab) => (
