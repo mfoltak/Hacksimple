@@ -1,6 +1,6 @@
 # Wealthsimple Generations
 
-A modern web application for managing trust funds with risk assessment capabilities.
+A modern web application meant to integrate to the Wealthsimple system for managing all generational wealth accounts such as RESP, RRSP, Trusts, and Wills.
 
 ## Prerequisites
 
