@@ -12,9 +12,9 @@ const PlaceholderPage: React.FC<{ title: string }> = ({ title }) => (
 
 const MainLayout: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Trust');
-  const [activeNavItem] = useState('Future');
+  const [activeNavItem] = useState('Generations');
 
-  const navItems = ['Home', 'Move', 'Activity', 'Future', 'Mortgage'];
+  const navItems = ['Home', 'Move', 'Activity', 'Generations', 'Mortgage'];
   const tabs = ['Trust', 'Will', 'RESP', 'RRSP', '+'];
 
   return (

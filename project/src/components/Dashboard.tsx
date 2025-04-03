@@ -144,7 +144,7 @@ const AllocationModal: React.FC<AllocationModalProps> = ({
           </div>
           {hasAllocationError && (
             <p className="mt-4 text-sm text-red-600">
-              Total allocation for one or more assets exceeds 100% across all beneficiaries
+              Total allocation for one or more assets exceeds 100% across all beneficiaries.
             </p>
           )}
         </div>

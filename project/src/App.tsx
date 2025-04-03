@@ -31,7 +31,7 @@ function App() {
             }`}
           >
             <Users className="h-5 w-5" />
-            Trust Setup
+            Setup
           </button>
         </nav>
       </div>
