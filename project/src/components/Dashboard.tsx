@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DollarSign, TrendingUp, Users, ArrowRight, Trash2, Plus, X } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { predictRiskLevel, getRiskLevelLabel, getRiskLevelColor } from '../utils/riskPredictor';
 
 interface AssetAllocation {
   'Stock Portfolio': number;
@@ -172,9 +173,103 @@ const AllocationModal: React.FC<AllocationModalProps> = ({
   );
 };
 
+interface StockPortfolioModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const StockPortfolioModal: React.FC<StockPortfolioModalProps> = ({ isOpen, onClose }) => {
+  const stockPortfolio = {
+    'Investment Account': 500000,
+    'Trading Account': 200000,
+    'Crypto Account': 50000,
+  };
+
+  const totalValue = Object.values(stockPortfolio).reduce((a, b) => a + b, 0);
+  const riskLevel = predictRiskLevel(stockPortfolio);
+  const riskLabel = getRiskLevelLabel(riskLevel);
+  const riskColor = getRiskLevelColor(riskLevel);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white rounded-lg p-6 w-[480px]">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-lg font-semibold">Stock Portfolio Breakdown</h3>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        
+        {/* Risk Level Indicator */}
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-gray-700">Portfolio Risk Level</span>
+            <span 
+              className="px-3 py-1 rounded-full text-sm font-medium"
+              style={{ backgroundColor: `${riskColor}20`, color: riskColor }}
+            >
+              {riskLabel}
+            </span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div
+              className="h-2 rounded-full"
+              style={{ 
+                width: `${riskLevel * 100}%`,
+                backgroundColor: riskColor
+              }}
+            />
+          </div>
+          <div className="text-xs text-gray-500 text-right mt-1">
+            {Math.round(riskLevel * 100)}% Risk
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          {Object.entries(stockPortfolio).map(([account, value]) => {
+            const percentage = ((value / totalValue) * 100).toFixed(1);
+            return (
+              <div key={account} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700">{account}</span>
+                  <span className="text-sm text-gray-600">${value.toLocaleString()}</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    className="bg-blue-600 h-2 rounded-full"
+                    style={{ width: `${percentage}%` }}
+                  />
+                </div>
+                <div className="text-xs text-gray-500 text-right">{percentage}%</div>
+              </div>
+            );
+          })}
+          <div className="pt-4 border-t">
+            <div className="flex justify-between items-center">
+              <span className="font-medium text-gray-900">Total Portfolio Value</span>
+              <span className="font-medium text-gray-900">${totalValue.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Dashboard = () => {
   const [selectedBeneficiary, setSelectedBeneficiary] = useState<Beneficiary | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isStockPortfolioModalOpen, setIsStockPortfolioModalOpen] = useState(false);
   const [trustFund, setTrustFund] = useState({
     totalValue: 1250000,
     assets: [
@@ -336,7 +431,16 @@ const Dashboard = () => {
                   dataKey="value"
                 >
                   {trustFund.assets.map((asset, index) => (
-                    <Cell key={`cell-${index}`} fill={asset.color} />
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={asset.color}
+                      onClick={() => {
+                        if (asset.name === 'Stock Portfolio') {
+                          setIsStockPortfolioModalOpen(true);
+                        }
+                      }}
+                      style={{ cursor: asset.name === 'Stock Portfolio' ? 'pointer' : 'default' }}
+                    />
                   ))}
                 </Pie>
                 <Tooltip content={<CustomTooltip />} />
@@ -407,6 +511,11 @@ const Dashboard = () => {
           setSelectedBeneficiary(null);
         }}
         onSave={handleAllocationUpdate}
+      />
+
+      <StockPortfolioModal
+        isOpen={isStockPortfolioModalOpen}
+        onClose={() => setIsStockPortfolioModalOpen(false)}
       />
     </div>
   );
