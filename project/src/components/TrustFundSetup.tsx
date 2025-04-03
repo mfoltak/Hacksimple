@@ -221,21 +221,11 @@ const TrustFundSetup = () => {
             <div className={`flex items-center ${currentStep === 4 ? 'text-gray-900' : 'text-gray-500'}`}>
               <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
                 ${currentStep === 4 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>4</span>
-              Additional Info
+              Financial Goals
             </div>
             <div className={`flex items-center ${currentStep === 5 ? 'text-gray-900' : 'text-gray-500'}`}>
               <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
                 ${currentStep === 5 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>5</span>
-              Financial Goals
-            </div>
-            <div className={`flex items-center ${currentStep === 6 ? 'text-gray-900' : 'text-gray-500'}`}>
-              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
-                ${currentStep === 6 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>6</span>
-              Declarations
-            </div>
-            <div className={`flex items-center ${currentStep === 7 ? 'text-gray-900' : 'text-gray-500'}`}>
-              <span className={`w-8 h-8 flex items-center justify-center rounded-full border-2 mr-2
-                ${currentStep === 7 ? 'border-gray-900 bg-gray-100' : 'border-gray-300'}`}>7</span>
               Review
             </div>
           </div>
@@ -536,7 +526,7 @@ const TrustFundSetup = () => {
         {currentStep === 3 && (
           <div className="space-y-8">
             <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">4. Trust Details</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">3. Trust Details</h2>
               <div className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Name of the Trust</label>
@@ -557,84 +547,41 @@ const TrustFundSetup = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Type of Trust</label>
-                  <div className="space-y-2">
-                    <div className="flex items-center">
-                      <input
-                        id="inter-vivos"
-                        name="type"
-                        type="radio"
-                        checked={trustData.trustDetails.type === 'inter-vivos'}
-                        onChange={() => setTrustData({
-                          ...trustData,
-                          trustDetails: {
-                            ...trustData.trustDetails,
-                            type: 'inter-vivos'
-                          }
-                        })}
-                        className="h-4 w-4 border-gray-300 text-gray-900 focus:ring-gray-500"
-                      />
-                      <label htmlFor="inter-vivos" className="ml-3 block text-sm font-medium text-gray-700">
-                        Inter Vivos (Living Trust)
-                      </label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        id="testamentary"
-                        name="type"
-                        type="radio"
-                        checked={trustData.trustDetails.type === 'testamentary'}
-                        onChange={() => setTrustData({
-                          ...trustData,
-                          trustDetails: {
-                            ...trustData.trustDetails,
-                            type: 'testamentary'
-                          }
-                        })}
-                        className="h-4 w-4 border-gray-300 text-gray-900 focus:ring-gray-500"
-                      />
-                      <label htmlFor="testamentary" className="ml-3 block text-sm font-medium text-gray-700">
-                        Testamentary Trust
-                      </label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        id="other"
-                        name="type"
-                        type="radio"
-                        checked={trustData.trustDetails.type === 'other'}
-                        onChange={() => setTrustData({
-                          ...trustData,
-                          trustDetails: {
-                            ...trustData.trustDetails,
-                            type: 'other'
-                          }
-                        })}
-                        className="h-4 w-4 border-gray-300 text-gray-900 focus:ring-gray-500"
-                      />
-                      <label htmlFor="other" className="ml-3 block text-sm font-medium text-gray-700">
-                        Other
-                      </label>
-                    </div>
-                    {trustData.trustDetails.type === 'other' && (
-                      <div className="ml-7">
-                        <input
-                          type="text"
-                          name="otherType"
-                          value={trustData.trustDetails.otherType || ''}
-                          onChange={(e) => setTrustData({
-                            ...trustData,
-                            trustDetails: {
-                              ...trustData.trustDetails,
-                              otherType: e.target.value
-                            }
-                          })}
-                          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
-                          placeholder="Specify trust type"
-                        />
-                      </div>
-                    )}
+                  <label className="block text-sm font-medium text-gray-700">Type of Trust</label>
+                  <div className="mt-1">
+                    <select
+                      name="type"
+                      value={trustData.trustDetails.type}
+                      onChange={(e) => setTrustData({
+                        ...trustData,
+                        trustDetails: {
+                          ...trustData.trustDetails,
+                          type: e.target.value as 'inter-vivos' | 'testamentary' | 'other'
+                        }
+                      })}
+                      className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                    >
+                      <option value="inter-vivos">Inter Vivos (Living Trust)</option>
+                      <option value="testamentary">Testamentary Trust</option>
+                      <option value="other">Other</option>
+                    </select>
                   </div>
+                  {trustData.trustDetails.type === 'other' && (
+                    <input
+                      type="text"
+                      name="otherType"
+                      value={trustData.trustDetails.otherType || ''}
+                      onChange={(e) => setTrustData({
+                        ...trustData,
+                        trustDetails: {
+                          ...trustData.trustDetails,
+                          otherType: e.target.value
+                        }
+                      })}
+                      className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                      placeholder="Please specify the type of trust"
+                    />
+                  )}
                 </div>
                 
                 <div>
@@ -651,7 +598,7 @@ const TrustFundSetup = () => {
                     })}
                     rows={3}
                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
-                    placeholder="e.g., asset protection, tax planning, estate planning"
+                    placeholder="e.g., To provide for the education and welfare of my children"
                   />
                 </div>
                 
@@ -758,33 +705,11 @@ const TrustFundSetup = () => {
                     </button>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-between">
-              <button
-                type="button"
-                onClick={prevStep}
-                className="border border-gray-300 py-2 px-6 text-gray-700 rounded-md hover:bg-gray-50"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-              >
-                Next: Additional Provisions
-              </button>
-            </div>
-          </div>
-        )}
 
-        {currentStep === 4 && (
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">5. Additional Provisions</h2>
-              <div className="space-y-6">
+                <div className="border-t border-gray-200 pt-6 mt-6">
+                  <h3 className="text-md font-medium text-gray-900 mb-4">Additional Provisions</h3>
+                </div>
+                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Duration of the Trust</label>
                   <select
@@ -878,6 +803,20 @@ const TrustFundSetup = () => {
                       </label>
                     </div>
                   </div>
+                  <textarea
+                    name="trusteePowers"
+                    value={trustData.additionalProvisions.trusteePowers}
+                    onChange={(e) => setTrustData({
+                      ...trustData,
+                      additionalProvisions: {
+                        ...trustData.additionalProvisions,
+                        trusteePowers: e.target.value
+                      }
+                    })}
+                    rows={2}
+                    className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                    placeholder="Additional trustee powers..."
+                  />
                 </div>
                 
                 <div>
@@ -936,7 +875,6 @@ const TrustFundSetup = () => {
                     <option value="Distributions based on need">Distributions based on need</option>
                     <option value="Distributions at specific ages">Distributions at specific ages</option>
                     <option value="Distributions for specific purposes only">Distributions for specific purposes only</option>
-                    <option value="Discretionary distributions by trustee">Discretionary distributions by trustee</option>
                     <option value="custom">Custom distribution plan...</option>
                   </select>
                   {trustData.additionalProvisions.distributionPlan === 'custom' && (
@@ -1046,9 +984,9 @@ const TrustFundSetup = () => {
           </div>
         )}
 
-        {currentStep === 5 && (
+        {currentStep === 4 && (
           <div className="bg-white p-6 rounded-lg shadow space-y-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">6. Financial Goals</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">4. Financial Goals</h2>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Current Annual Income
@@ -1160,90 +1098,69 @@ const TrustFundSetup = () => {
                 onClick={nextStep}
                 className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               >
-                Next: Declarations
-              </button>
-            </div>
-          </div>
-        )}
-
-        {currentStep === 6 && (
-          <div className="space-y-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">7. Declarations</h2>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="declaration1"
-                      name="declaration1"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="declaration1" className="font-medium text-gray-700">
-                      I confirm that all information provided is accurate and complete to the best of my knowledge.
-                    </label>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="declaration2"
-                      name="declaration2"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="declaration2" className="font-medium text-gray-700">
-                      I understand that the creation of a trust has legal and tax implications, and I have consulted or will consult with appropriate professionals.
-                    </label>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="declaration3"
-                      name="declaration3"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="declaration3" className="font-medium text-gray-700">
-                      I consent to the use of this information for the purpose of drafting a trust document.
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-between">
-              <button
-                type="button"
-                onClick={prevStep}
-                className="border border-gray-300 py-2 px-6 text-gray-700 rounded-md hover:bg-gray-50"
-              >
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="bg-gray-900 py-2 px-6 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-              >
                 Next: Review
               </button>
             </div>
           </div>
         )}
 
-        {currentStep === 7 && (
+        {currentStep === 5 && (
           <div className="space-y-8">
             <div className="bg-white p-6 rounded-lg shadow">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Review Your Trust Fund Setup</h2>
+              
+              <div className="mb-6 pb-6 border-b border-gray-200">
+                <h3 className="font-medium text-gray-900 mb-3">Declarations</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="declaration1"
+                        name="declaration1"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label htmlFor="declaration1" className="font-medium text-gray-700">
+                        I confirm that all information provided is accurate and complete to the best of my knowledge.
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="declaration2"
+                        name="declaration2"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label htmlFor="declaration2" className="font-medium text-gray-700">
+                        I understand that the creation of a trust has legal and tax implications, and I have consulted or will consult with appropriate professionals.
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex items-center h-5">
+                      <input
+                        id="declaration3"
+                        name="declaration3"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label htmlFor="declaration3" className="font-medium text-gray-700">
+                        I consent to the use of this information for the purpose of drafting a trust document.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
               
               <div className="space-y-6">
                 <div>
@@ -1281,14 +1198,6 @@ const TrustFundSetup = () => {
                   </p>
                   <p className="text-gray-600 mt-1">
                     Purpose: {trustData.trustDetails.purpose || "Not specified"}
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-medium text-gray-900">Additional Provisions</h3>
-                  <p className="text-gray-600">
-                    Duration: {trustData.additionalProvisions.duration || "Not specified"} • 
-                    Successor Trustee: {trustData.additionalProvisions.successorTrustee || "Not specified"}
                   </p>
                 </div>
                 
