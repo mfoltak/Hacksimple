@@ -1,4 +1,4 @@
-# Trust Fund Management System
+# Wealthsimple Generations
 
 A modern web application for managing trust funds with risk assessment capabilities.
 
